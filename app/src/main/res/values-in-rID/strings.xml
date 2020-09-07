@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pencarian Pengguna Github</string>
+    <string name="search_hint">Cari Pengguna</string>
+    <string name="no_data">Tidak Ada Data User Ditemukan</string>
+    <string name="search_github_user">Cari Pengguna Github</string>
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="user_detail">Detil User</string>
+    <string name="name">Nama</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="location">Lokasi</string>
+    <string name="dash">-</string>
+    <string name="company">Perusahaan</string>
+    <string name="repository">Repositori</string>
+    <string name="change_language_setting">Ubah pengaturan bahasa</string>
+</resources>

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Github User Search</string>
+    <string name="search_hint">Search User</string>
+    <string name="no_data">No User Data Found</string>
+    <string name="search_github_user">Search Github User</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="user_detail">User Detail</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="location">Location</string>
+    <string name="dash">-</string>
+    <string name="company">Company</string>
+    <string name="repository">Repository</string>
+    <string name="change_language_setting">Change language setting</string>
 </resources>
