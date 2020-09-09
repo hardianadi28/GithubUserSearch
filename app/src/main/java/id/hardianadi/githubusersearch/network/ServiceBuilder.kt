@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit
  */
 object ServiceBuilder {
     private const val GITHUB_KEY = BuildConfig.ApiKey
+    private const val BASE_URL = "https://api.github.com/"
+
     private val client = OkHttpClient.Builder()
         .addInterceptor(object : Interceptor {
             override fun intercept(chain: Interceptor.Chain): Response {
@@ -30,7 +32,7 @@ object ServiceBuilder {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
+        .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

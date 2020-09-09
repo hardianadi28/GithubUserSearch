@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Github User Consumer App</string>
+    <string name="no_data">No User Data Found</string>
+    <string name="change_language_setting">Change language setting</string>
+</resources>

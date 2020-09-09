@@ -1,22 +1,18 @@
 package id.hardianadi.githubusersearch.ui.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.hardianadi.githubusersearch.R
 import id.hardianadi.githubusersearch.model.GithubUser
 import id.hardianadi.githubusersearch.ui.mainlist.GithubUserAdapter
-import id.hardianadi.githubusersearch.viewmodel.FollowerViewModel
 import id.hardianadi.githubusersearch.viewmodel.FollowingViewModel
-import kotlinx.android.synthetic.main.fragment_follower.pbLoading
-import kotlinx.android.synthetic.main.fragment_follower.rvUserList
-import kotlinx.android.synthetic.main.fragment_follower.tvNoData
+import kotlinx.android.synthetic.main.fragment_follower.*
 
 class FollowingFragment : Fragment() {
 
@@ -55,14 +51,26 @@ class FollowingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val adapter = getAdapter()
+        prepareRecycleView(adapter)
+        setObserve(adapter)
+    }
 
-        val adapter = GithubUserAdapter()
+    private fun getAdapter(): GithubUserAdapter {
+        val adapter = GithubUserAdapter(false)
         adapter.data = listOf()
+        adapter.setOnClickListener(object : GithubUserAdapter.AdapterOnClickListener {
+            override fun onClick(user: GithubUser) {
 
+            }
+        })
+        return adapter
+    }
+
+    private fun prepareRecycleView(adapter: GithubUserAdapter) {
         rvUserList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-
             this.adapter = adapter
             addItemDecoration(
                 DividerItemDecoration(
@@ -71,27 +79,19 @@ class FollowingFragment : Fragment() {
                 )
             )
         }
-
-        adapter.setOnClickListener(object : GithubUserAdapter.AdapterOnClickListener {
-            override fun onClick(user: GithubUser) {
-
-            }
-        })
-
-        setObserve(adapter)
     }
 
     private fun setObserve(adapter: GithubUserAdapter) {
-        viewModel.followingList.observe(viewLifecycleOwner) {
+        viewModel.followingList.observe(viewLifecycleOwner, {
             adapter.data = it
-        }
+        })
 
-        viewModel.loadingStatus.observe(this) {
+        viewModel.loadingStatus.observe(viewLifecycleOwner, {
             pbLoading.visibility = if (it) View.VISIBLE else View.GONE
-        }
-        viewModel.noData.observe(this) {
+        })
+        viewModel.noData.observe(viewLifecycleOwner, {
             tvNoData.visibility = if (it) View.VISIBLE else View.GONE
-        }
+        })
     }
 
 }

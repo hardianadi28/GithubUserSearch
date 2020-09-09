@@ -14,4 +14,16 @@
     <string name="company">Perusahaan</string>
     <string name="repository">Repositori</string>
     <string name="change_language_setting">Ubah pengaturan bahasa</string>
+    <string name="favorite">Pengguna Disukai</string>
+    <string name="delete_favorite">Hapus Favorit</string>
+    <string name="alert_delete_favorite">Apakah anda yakin ingin menghapus user ini dari favorit?</string>
+    <string name="title_delete_favorite">Hapus Favorit</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="alert_fail_delete">Gagal menghapus data</string>
+    <string name="alert_success_delete">Data telah berhasil dihapus</string>
+    <string name="title_activity_settings">Pengaturan</string>
+    <string name="setting_language">Ubah Bahasa</string>
+    <string name="setting_notification">Notifikasi Periodik</string>
+    <string name="notif_message">Temukan pengguna populer di GitHub!</string>
 </resources>

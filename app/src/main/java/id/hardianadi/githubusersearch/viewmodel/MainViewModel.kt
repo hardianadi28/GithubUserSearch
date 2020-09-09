@@ -9,6 +9,7 @@ import id.hardianadi.githubusersearch.model.GithubUser
 import id.hardianadi.githubusersearch.model.SearchUserResponse
 import id.hardianadi.githubusersearch.network.GithubInterface
 import id.hardianadi.githubusersearch.network.ServiceBuilder
+import id.hardianadi.githubusersearch.util.toGitHubUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -62,8 +63,10 @@ class MainViewModel : ViewModel() {
                 _loadingStatus.postValue(false)
                 if (response.isSuccessful) {
                     if (response.body()?.totalCount!! > 0) {
-                        response.body()?.items?.let {
-                            _userList.postValue(it)
+                        response.body()?.items?.let { list ->
+                            _userList.postValue(list.map {
+                                it.toGitHubUser()
+                            })
                         }
                     } else {
                         _noData.postValue(true)

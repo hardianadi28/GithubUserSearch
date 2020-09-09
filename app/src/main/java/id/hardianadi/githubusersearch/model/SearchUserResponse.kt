@@ -14,5 +14,5 @@ data class SearchUserResponse(
 	val incompleteResults: Boolean? = null,
 
 	@field:SerializedName("items")
-	val items: List<GithubUser>? = null
+	val items: List<GithubUserNetwork>? = null
 ) : Parcelable

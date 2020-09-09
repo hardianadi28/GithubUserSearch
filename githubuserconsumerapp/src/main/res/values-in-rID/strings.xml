@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User Consumer App</string>
+    <string name="no_data">Tidak Ada Data User Ditemukan</string>
+    <string name="change_language_setting">Ubah pengaturan bahasa</string>
+</resources>

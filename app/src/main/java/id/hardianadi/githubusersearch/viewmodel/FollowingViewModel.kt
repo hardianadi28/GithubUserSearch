@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.hardianadi.githubusersearch.model.GithubUser
+import id.hardianadi.githubusersearch.model.GithubUserNetwork
 import id.hardianadi.githubusersearch.network.GithubInterface
 import id.hardianadi.githubusersearch.network.ServiceBuilder
+import id.hardianadi.githubusersearch.util.toGitHubUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -52,24 +54,25 @@ class FollowingViewModel : ViewModel() {
         _loadingStatus.postValue(true)
         _noData.postValue(false)
         val call = request.getFollowing(user)
-        call.enqueue(object : Callback<List<GithubUser>> {
-
+        call.enqueue(object : Callback<List<GithubUserNetwork>> {
 
             override fun onResponse(
-                call: Call<List<GithubUser>>,
-                response: Response<List<GithubUser>>
+                call: Call<List<GithubUserNetwork>>,
+                response: Response<List<GithubUserNetwork>>
             ) {
                 _loadingStatus.postValue(false)
                 if(response.isSuccessful) {
                     if(response.body()?.size!! > 0) {
-                        _followingList.postValue(response.body())
+                        _followingList.postValue(response.body()?.map {
+                            it.toGitHubUser()
+                        })
                     }else{
                         _noData.postValue(true)
                     }
                 }
             }
 
-            override fun onFailure(call: Call<List<GithubUser>>, t: Throwable) {
+            override fun onFailure(call: Call<List<GithubUserNetwork>>, t: Throwable) {
                 _loadingStatus.postValue(false)
                 Log.e(TAG, t.message!!)
             }
