@@ -13,4 +13,10 @@
         android:icon="@drawable/ic_settings_white"
         android:title="@string/change_language_setting"
         app:showAsAction="collapseActionView|ifRoom"/>
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite"
+        app:showAsAction="collapseActionView|ifRoom"/>
 </menu>

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_list.view.*
  * @version 1.0
  * @since 22/07/2020
  */
-class GithubUserAdapter() :
+class GithubUserAdapter(private val isAbleToDelete: Boolean) :
     RecyclerView.Adapter<GithubUserAdapter.ViewHolder>() {
 
     var data = listOf<GithubUser>()
@@ -28,6 +28,12 @@ class GithubUserAdapter() :
 
     fun setOnClickListener(onClickListener: AdapterOnClickListener) {
         this.onClickListener = onClickListener
+    }
+
+    private lateinit var onClickDeleteListener: AdapterOnClickListener
+
+    fun setOnClickDeleteListener(onClickDeleteListener: AdapterOnClickListener) {
+        this.onClickDeleteListener = onClickDeleteListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -57,6 +63,9 @@ class GithubUserAdapter() :
                     .into(imgProfile)
 
                 setOnClickListener { onClickListener.onClick(user) }
+                ivDelete.visibility = if (isAbleToDelete) View.VISIBLE else View.GONE
+                if (isAbleToDelete)ivDelete.setOnClickListener { onClickDeleteListener.onClick(user) }
+
             }
         }
     }
